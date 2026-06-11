@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import RacketList from "./components/RacketList"
 
 function App() {
   const [rackets, setRackets] = useState([])
@@ -20,19 +21,7 @@ function App() {
   return (
     <div>
       <h1>Tennis Racket Finder</h1>
-      
-      {rackets.map((racket) => (
-        <div key={racket.id}>
-          <h2>
-            {racket.brand} {racket.model}
-          </h2>
-
-          <p>Head Size: {racket.headSize} sq in</p>
-          <p>Weight: {racket.weight} g</p>
-          <p>String Patter: {racket.stringPattern}</p>
-
-        </div>
-      ))}
+      <RacketList rackets={rackets} />
     </div>
   )
 }
