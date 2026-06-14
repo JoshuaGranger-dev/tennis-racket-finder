@@ -4,6 +4,7 @@ import RacketList from "./components/RacketList"
 function App() {
   const [rackets, setRackets] = useState([])
   const [selectedBrand, setSelectedBrand] = useState("All")
+  const [selectedStringPattern, setSelectedStringPattern] =useState("All")
 
   useEffect(() => {
     console.log("useEffect is running")
@@ -19,9 +20,15 @@ function App() {
       })
   }, [])
 
-  const filteredRackets = selectedBrand === "All"
-    ? rackets 
-    : rackets.filter((racket) => racket.brand === selectedBrand)
+  let filteredRackets = rackets
+
+    if (selectedBrand !== "All") {
+      filteredRackets = filteredRackets.filter((racket) => racket.brand === selectedBrand)
+    } 
+  
+    if (selectedStringPattern !== "All") {
+      filteredRackets = filteredRackets.filter((racket) => racket.stringPattern === selectedStringPattern)
+    }
 
   return (
     <div>
@@ -31,6 +38,12 @@ function App() {
         <option value="Wilson">Wilson</option>
         <option value="Babolat">Babolat</option>
         <option value="Yonex">Yonex</option>
+      </select>
+      <select value={selectedStringPattern} onChange={(e) => setSelectedStringPattern(e.target.value)}>
+        <option value="All">All</option>
+        <option value="16x19">16x19</option>
+        <option value="18x20">18x20</option>
+        <option value="16x20">16x20</option>
       </select>
       <RacketList rackets={filteredRackets} />
     </div>
