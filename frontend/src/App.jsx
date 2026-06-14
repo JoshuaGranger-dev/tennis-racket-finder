@@ -3,6 +3,7 @@ import RacketList from "./components/RacketList"
 
 function App() {
   const [rackets, setRackets] = useState([])
+  const [selectedBrand, setSelectedBrand] = useState("All")
 
   useEffect(() => {
     console.log("useEffect is running")
@@ -18,10 +19,20 @@ function App() {
       })
   }, [])
 
+  const filteredRackets = selectedBrand === "All"
+    ? rackets 
+    : rackets.filter((racket) => racket.brand === selectedBrand)
+
   return (
     <div>
       <h1>Tennis Racket Finder</h1>
-      <RacketList rackets={rackets} />
+      <select value={selectedBrand} onChange={(e) => setSelectedBrand(e.target.value)}>
+        <option value="All">All</option>
+        <option value="Wilson">Wilson</option>
+        <option value="Babolat">Babolat</option>
+        <option value="Yonex">Yonex</option>
+      </select>
+      <RacketList rackets={filteredRackets} />
     </div>
   )
 }
