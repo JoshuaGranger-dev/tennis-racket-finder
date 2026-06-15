@@ -7,6 +7,7 @@ function App() {
   const [selectedBrand, setSelectedBrand] = useState("All")
   const [selectedStringPattern, setSelectedStringPattern] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     console.log("useEffect is running")
@@ -15,12 +16,18 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setRackets(data)
+        setIsLoading(false)
         console.log(data)
       })
       .catch((error) => {
         console.error(error)
+        setIsLoading(false)
       })
   }, [])
+
+  if (isLoading) {
+    return <p>Loading Rackets...</p>
+  }
 
   let filteredRackets = rackets
 
