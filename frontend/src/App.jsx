@@ -52,6 +52,9 @@ function App() {
       />
 
       <p>Showing {filteredRackets.length} of {rackets.length} rackets</p>
+      {filteredRackets.length === 0 && (
+        <p>No rackets match your filters.</p>
+      )}
 
       <RacketList rackets={filteredRackets} />
     </div>
