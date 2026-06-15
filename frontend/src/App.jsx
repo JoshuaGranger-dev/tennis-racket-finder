@@ -51,6 +51,8 @@ function App() {
         setSelectedStringPattern={setSelectedStringPattern}
       />
 
+      <p>Showing {filteredRackets.length} of {rackets.length} rackets</p>
+
       <RacketList rackets={filteredRackets} />
     </div>
   )
