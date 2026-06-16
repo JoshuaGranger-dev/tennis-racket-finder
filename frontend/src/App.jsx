@@ -8,25 +8,28 @@ function App() {
   const [selectedStringPattern, setSelectedStringPattern] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(true)
-
+  const [error, setError] = useState("")
   useEffect(() => {
-    console.log("useEffect is running")
 
     fetch("http://localhost:5000/rackets")
       .then((res) => res.json())
       .then((data) => {
         setRackets(data)
         setIsLoading(false)
-        console.log(data)
       })
       .catch((error) => {
         console.error(error)
+        setError("Could not load rackets. Make sure the backend server is running.")
         setIsLoading(false)
       })
   }, [])
 
   if (isLoading) {
     return <p>Loading Rackets...</p>
+  }
+
+  if (error) {
+    return <p>{error}</p>
   }
 
   let filteredRackets = rackets
