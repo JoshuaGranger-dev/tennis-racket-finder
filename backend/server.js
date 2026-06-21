@@ -82,6 +82,31 @@ app.get("/rackets/:id", (req, res) => {
   res.json(racket)
 })
 
+app.post("/rackets", (req, res) => {
+  const { brand, model, headSize, weight, stringPattern } = req.body
+
+  if (!brand || !model || !headSize || !weight || !stringPattern) {
+      return res.status(400).json({ error: "Missing required racket fields" })
+  }
+
+  const newId = rackets.length > 0
+    ? Math.max(...rackets.map((racket) => racket.id)) + 1
+    : 1
+
+  const newRacket = {
+  id: newId,
+  brand,
+  model,
+  headSize,
+  weight,
+  stringPattern,
+  }
+
+  rackets.push(newRacket)
+
+  res.status(201).json(newRacket)
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
