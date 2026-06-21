@@ -53,18 +53,17 @@ app.get("/rackets", (req, res) => {
   let filterRackets = rackets
 
   if (brand) {
-    filterRackets = rackets.filter((racket) => racket.brand === brand)
+    filterRackets = filterRackets.filter((racket) => racket.brand === brand)
   }
 
   if (stringPattern) {
-    filterRackets = rackets.filter((racket) => racket.stringPattern === stringPattern)
+    filterRackets = filterRackets.filter((racket) => racket.stringPattern === stringPattern)
   }
 
   if (search) {
-    filterRackets = rackets.filter((
-      racket) => 
-        racket.model.toLowerCase().includes(search.toLowerCase()) ||
-        racket.brand.toLowerCase().includes(search.toLowerCase())
+    filteredRackets = filteredRackets.filter((racket) =>
+      racket.brand.toLowerCase().includes(search.toLowerCase()) ||
+      racket.model.toLowerCase().includes(search.toLowerCase())
     )
   }
 
