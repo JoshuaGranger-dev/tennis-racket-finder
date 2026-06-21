@@ -48,7 +48,27 @@ app.get("/", (req, res) => {
 });
 
 app.get("/rackets", (req, res) => {
-  res.json(rackets);
+  const { brand, stringPattern, search } = req.query
+
+  let filterRackets = rackets
+
+  if (brand) {
+    filterRackets = rackets.filter((racket) => racket.brand === brand)
+  }
+
+  if (stringPattern) {
+    filterRackets = rackets.filter((racket) => racket.stringPattern === stringPattern)
+  }
+
+  if (search) {
+    filterRackets = rackets.filter((
+      racket) => 
+        racket.model.toLowerCase().includes(search.toLowerCase()) ||
+        racket.brand.toLowerCase().includes(search.toLowerCase())
+    )
+  }
+
+  res.json(filterRackets);
 });
 
 app.listen(PORT, () => {
