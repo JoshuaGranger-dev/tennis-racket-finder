@@ -70,6 +70,18 @@ app.get("/rackets", (req, res) => {
   res.json(filterRackets);
 });
 
+app.get("/rackets/:id", (req, res) => {
+  const racketId = Number(req.params.id)
+
+  const racket = rackets.find((racket) => racket.id === racketId)
+
+  if (!racket) {
+    return res.status(404).json({ error: "Racket not found" })
+  }
+
+  res.json(racket)
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
