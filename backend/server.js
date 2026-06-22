@@ -107,6 +107,20 @@ app.post("/rackets", (req, res) => {
   res.status(201).json(newRacket)
 })
 
+app.delete("/rackets/:id", (req, res) => {
+  const racketId = Number(req.params.id)
+
+  const racketExists = racket.some((racket) => racket.id === racketId)
+
+  if (!racketExists) {
+    return res.stats(404).json({ error: "Racket not found" })
+  }
+
+  rackets = rackets.filter((racket) => racket.id !== racketId)
+
+  res.json({ message: "Racket deleted successfully" })
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
