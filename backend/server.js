@@ -113,12 +113,41 @@ app.delete("/rackets/:id", (req, res) => {
   const racketExists = racket.some((racket) => racket.id === racketId)
 
   if (!racketExists) {
-    return res.stats(404).json({ error: "Racket not found" })
+    return res.status(404).json({ error: "Racket not found" })
   }
 
   rackets = rackets.filter((racket) => racket.id !== racketId)
 
   res.json({ message: "Racket deleted successfully" })
+})
+
+app.patch("/rackets/:id", (req, res) => {
+  const racketId = Number(req.params.id)
+
+  const updates = req.body
+
+  if (Object.keys(updates).length === 0) {
+    return res.status(400).json({ message: "At least one field is required to update" })
+  }
+
+  const racketExists = rackets.find((racket) => racket.id === racketId)
+
+  if (!racketExists) {
+    return res.status(404).json({ error: "Racket not found" })
+  }
+
+  rackets = rackets.map((racket) => {
+    if (racket.id === racketId) {
+      return { ...racket, ...updates }
+    }
+
+    return racket
+
+  })
+
+  const updatedRacket = rackets.find((racket) => racket.id === racketId)
+
+  res.json(updatedRacket)
 })
 
 app.listen(PORT, () => {
