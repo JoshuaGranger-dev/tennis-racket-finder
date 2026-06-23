@@ -49,6 +49,19 @@ function App() {
       )
     }
 
+  function handleDeleteRacket(id) {
+    fetch(`http://localhost:5000/rackets/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setRackets(rackets.filter((racket) => racket.id !== id))
+      })
+      .catch((error)  => {
+        console.error(error)
+      })
+  }
+
   return (
     <div>
       <h1>Tennis Racket Finder</h1>
@@ -66,7 +79,10 @@ function App() {
         <p>No rackets match your filters.</p>
       )}
 
-      <RacketList rackets={filteredRackets} />
+      <RacketList 
+        rackets={filteredRackets}
+        handleDeleteRacket={handleDeleteRacket}
+      />
     </div>
   )
 }

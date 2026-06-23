@@ -7,7 +7,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-const rackets = [
+let rackets = [
   {
     id: 1,
     brand: "Wilson",
@@ -110,7 +110,7 @@ app.post("/rackets", (req, res) => {
 app.delete("/rackets/:id", (req, res) => {
   const racketId = Number(req.params.id)
 
-  const racketExists = racket.some((racket) => racket.id === racketId)
+  const racketExists = rackets.some((racket) => racket.id === racketId)
 
   if (!racketExists) {
     return res.status(404).json({ error: "Racket not found" })
