@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import RacketList from "./components/RacketList"
 import FilterPanel from "./components/FilterPanel"
+import RacketForm from "./components/RacketForm"
 
 function App() {
   const [rackets, setRackets] = useState([])
@@ -62,9 +63,31 @@ function App() {
       })
   }
 
+  function handleAddRacket(newRacket) {
+    fetch("http://localhost:5000/rackets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify(newRacket),
+    })
+      .then((res) => res.json())
+      .then((createdRacket) => {
+        setRackets([ ...rackets, createdRacket])
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   return (
     <div>
       <h1>Tennis Racket Finder</h1>
+
+      <RacketForm
+        handleAddRacket={handleAddRacket}
+      />
+
       <FilterPanel
         searchTerm={searchTerm}  
         setSearchTerm={setSearchTerm}
