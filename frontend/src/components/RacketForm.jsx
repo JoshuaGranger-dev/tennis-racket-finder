@@ -20,6 +20,12 @@ function RacketForm({ handleAddRacket }) {
         }
 
         handleAddRacket(newRacket)
+
+        setBrand("")
+        setModel("")
+        setHeadSize("")
+        setWeight("")
+        setStringPattern("")
     }
 
     return (
