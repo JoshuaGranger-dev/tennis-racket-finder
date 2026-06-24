@@ -7,9 +7,17 @@ function RacketForm({ handleAddRacket }) {
     const [headSize, setHeadSize] = useState("")
     const [weight, setWeight] = useState("")
     const [stringPattern, setStringPattern] = useState("")
+    const [error, setError] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        if (!brand || !model || !headSize || !weight || !stringPattern) {
+            setError("Please fill out all fields")
+            return
+        }
+
+        setError("")
 
         const newRacket = {
             brand,
@@ -31,6 +39,8 @@ function RacketForm({ handleAddRacket }) {
     return (
         <form onSubmit={handleSubmit}>
             <h2>Add a Racket</h2>
+
+            {error && <p>{error}</p>}
 
             <input 
                 type="text" 
