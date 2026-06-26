@@ -10,6 +10,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
+  const [editingRacket, setEditingRacket] = useState(null)
+
   useEffect(() => {
 
     fetch("http://localhost:5000/rackets")
@@ -80,13 +82,13 @@ function App() {
       })
   }
 
-  function handleEditWeight(racket) {
+  function handleEditWeight(id, newWeight) {
 
     const updatedWeight = {
-      weight: Number(racket.weight) + 5
+      weight: Number(newWeight)
     }
 
-    fetch(`http://localhost:5000/rackets/${racket.id}`, {
+    fetch(`http://localhost:5000/rackets/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -104,6 +106,8 @@ function App() {
             return currentRacket
           })
         )
+
+        setEditingRacket(null)
       })
       .catch((error) => {
         console.error(error)
@@ -136,6 +140,8 @@ function App() {
         rackets={filteredRackets}
         handleDeleteRacket={handleDeleteRacket}
         handleEditWeight={handleEditWeight}
+        editingRacket={editingRacket}
+        setEditingRacket={setEditingRacket}
       />
     </div>
   )
