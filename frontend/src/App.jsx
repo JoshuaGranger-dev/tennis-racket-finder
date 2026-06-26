@@ -80,6 +80,36 @@ function App() {
       })
   }
 
+  function handleEditWeight(racket) {
+
+    const updatedWeight = {
+      weight: Number(racket.weight) + 5
+    }
+
+    fetch(`http://localhost:5000/rackets/${racket.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedWeight)
+    })
+      .then((res) => res.json())
+      .then((updatedRacket) => {
+        setRackets(
+          rackets.map((currentRacket) => {
+            if (currentRacket.id === updatedRacket.id) {
+              return updatedRacket
+            }
+
+            return currentRacket
+          })
+        )
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   return (
     <div>
       <h1>Tennis Racket Finder</h1>
@@ -105,6 +135,7 @@ function App() {
       <RacketList 
         rackets={filteredRackets}
         handleDeleteRacket={handleDeleteRacket}
+        handleEditWeight={handleEditWeight}
       />
     </div>
   )

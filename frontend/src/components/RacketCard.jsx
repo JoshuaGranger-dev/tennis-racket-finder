@@ -1,4 +1,4 @@
-function RacketCard({ racket, handleDeleteRacket }) {
+function RacketCard({ racket, handleDeleteRacket, handleEditWeight }) {
     return (
         <div>
             <h2>
@@ -11,6 +11,10 @@ function RacketCard({ racket, handleDeleteRacket }) {
 
             <button onClick={() => handleDeleteRacket(racket.id)}>
                 Delete
+            </button>
+
+            <button onClick={() => handleEditWeight(racket)}>
+                Add 5g
             </button>
         </div>
     )
