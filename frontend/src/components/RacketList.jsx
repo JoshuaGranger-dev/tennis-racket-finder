@@ -1,6 +1,12 @@
 import RacketCard from "./RacketCard"
 
-function RacketList({ rackets, handleDeleteRacket, handleUpdateWeight, editingRacket, setEditingRacket }) {
+function RacketList({ 
+    rackets,
+    handleDeleteRacket,
+    handleUpdateWeight,
+    editingRacket,
+    setEditingRacket 
+}) {
     return (
         <div>
             {rackets.map((racket) => (

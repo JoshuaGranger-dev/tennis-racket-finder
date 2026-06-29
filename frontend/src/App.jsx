@@ -38,17 +38,22 @@ function App() {
   let filteredRackets = rackets
 
     if (selectedBrand !== "All") {
-      filteredRackets = filteredRackets.filter((racket) => racket.brand === selectedBrand)
+      filteredRackets = filteredRackets.filter(
+        (racket) => racket.brand === selectedBrand
+      )
     } 
   
     if (selectedStringPattern !== "All") {
-      filteredRackets = filteredRackets.filter((racket) => racket.stringPattern === selectedStringPattern)
+      filteredRackets = filteredRackets.filter(
+        (racket) => racket.stringPattern === selectedStringPattern
+      )
     }
 
     if (searchTerm !== "") {
-      filteredRackets = filteredRackets.filter((racket) => 
-        racket.brand.toLowerCase().includes(searchTerm.toLowerCase())
-        || racket.model.toLowerCase().includes(searchTerm.toLowerCase())
+      filteredRackets = filteredRackets.filter(
+        (racket) => 
+        racket.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        racket.model.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 

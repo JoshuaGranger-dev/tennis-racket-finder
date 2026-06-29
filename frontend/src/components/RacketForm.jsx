@@ -78,7 +78,6 @@ function RacketForm({ handleAddRacket }) {
             />
 
             <button type="submit">Add Racket</button>
-
         </form>
     )
 }

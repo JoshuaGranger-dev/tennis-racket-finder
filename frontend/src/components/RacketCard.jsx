@@ -39,12 +39,14 @@ function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacke
                 Delete
             </button>
 
-            <button onClick={() => {
-                setEditingRacket(racket.id)
-                setEditedWeight(racket.weight)
-            }}>
-                Edit Weight
-            </button>
+            {!isEditing && (
+                <button onClick={() => {
+                    setEditingRacket(racket.id)
+                    setEditedWeight(racket.weight)
+                }}>
+                    Edit Weight
+                </button>
+            )}
             
 
         </div>

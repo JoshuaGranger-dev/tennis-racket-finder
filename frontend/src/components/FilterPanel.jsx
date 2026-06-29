@@ -16,13 +16,14 @@ function FilterPanel({
     return (
         <div>
             <input type="text"
-            value={searchTerm} 
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search by brand or model"
+                value={searchTerm} 
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by brand or model"
             />
 
-            <select value={selectedBrand} 
-            onChange={(e) => setSelectedBrand(e.target.value)}
+            <select 
+                value={selectedBrand} 
+                onChange={(e) => setSelectedBrand(e.target.value)}
             >
                 <option value="All">All</option>
                 <option value="Wilson">Wilson</option>
@@ -30,8 +31,9 @@ function FilterPanel({
                 <option value="Yonex">Yonex</option>
             </select>
 
-            <select value={selectedStringPattern} 
-            onChange={(e) => setSelectedStringPattern(e.target.value)}
+            <select 
+                value={selectedStringPattern} 
+                onChange={(e) => setSelectedStringPattern(e.target.value)}
             >
                 <option value="All">All</option>
                 <option value="16x19">16x19</option>
