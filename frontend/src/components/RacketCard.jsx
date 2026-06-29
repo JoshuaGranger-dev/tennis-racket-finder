@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacket, handleEditWeight }) {
+function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacket, handleUpdateWeight }) {
 
     const [editedWeight, setEditedWeight] = useState(racket.weight)
     const isEditing = editingRacket === racket.id 
@@ -21,7 +21,7 @@ function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacke
                         placeholder="New Weight"
                     />
 
-                    <button onClick={() => handleEditWeight(racket.id, editedWeight)}>
+                    <button onClick={() => handleUpdateWeight(racket.id, editedWeight)}>
                         Save
                     </button>
 

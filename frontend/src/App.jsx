@@ -82,7 +82,7 @@ function App() {
       })
   }
 
-  function handleEditWeight(id, newWeight) {
+  function handleUpdateWeight(id, newWeight) {
 
     const updatedWeight = {
       weight: Number(newWeight)
@@ -139,7 +139,7 @@ function App() {
       <RacketList 
         rackets={filteredRackets}
         handleDeleteRacket={handleDeleteRacket}
-        handleEditWeight={handleEditWeight}
+        handleUpdateWeight={handleUpdateWeight}
         editingRacket={editingRacket}
         setEditingRacket={setEditingRacket}
       />
