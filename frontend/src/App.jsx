@@ -7,6 +7,8 @@ function App() {
   const [rackets, setRackets] = useState([])
   const [selectedBrand, setSelectedBrand] = useState("All")
   const [selectedStringPattern, setSelectedStringPattern] = useState("All")
+  const [selectedPlayStyle, setSelectedPlayStyle] = useState("All")
+  const [selectedHeadSize, setSelectedHeadSize] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
@@ -46,6 +48,18 @@ function App() {
     if (selectedStringPattern !== "All") {
       filteredRackets = filteredRackets.filter(
         (racket) => racket.stringPattern === selectedStringPattern
+      )
+    }
+
+    if (selectedPlayStyle !== "All") {
+      filteredRackets = filteredRackets.filter(
+        (racket) => racket.playStyle === selectedPlayStyle
+      )
+    }
+
+    if (selectedHeadSize !== "All") {
+      filteredRackets = filteredRackets.filter(
+        (racket) => racket.headSize === Number(selectedHeadSize)
       )
     }
 
@@ -134,6 +148,10 @@ function App() {
         setSelectedBrand={setSelectedBrand}
         selectedStringPattern={selectedStringPattern}
         setSelectedStringPattern={setSelectedStringPattern}
+        selectedPlayStyle={selectedPlayStyle}
+        setSelectedPlayStyle={setSelectedPlayStyle}
+        selectedHeadSize={selectedHeadSize}
+        setSelectedHeadSize={setSelectedHeadSize}
       />
 
       <p>Showing {filteredRackets.length} of {rackets.length} rackets</p>

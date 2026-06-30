@@ -5,12 +5,18 @@ function FilterPanel({
     setSelectedBrand,
     selectedStringPattern,
     setSelectedStringPattern,
+    selectedPlayStyle,
+    setSelectedPlayStyle,
+    selectedHeadSize,
+    setSelectedHeadSize,
  }) {
 
     function handleClearFilters() {
         setSearchTerm("")
         setSelectedBrand("All")
         setSelectedStringPattern("All")
+        setSelectedPlayStyle("All")
+        setSelectedHeadSize("All")
     }
 
     return (
@@ -39,6 +45,24 @@ function FilterPanel({
                 <option value="16x19">16x19</option>
                 <option value="18x20">18x20</option>
                 <option value="16x20">16x20</option>
+            </select>
+
+            <select 
+                value={selectedPlayStyle}
+                onChange={(e) => setSelectedPlayStyle(e.target.value)}    
+            >
+                <option value="All">All</option>
+                <option value="Spin">Spin</option>
+                <option value="Control">Control</option>
+            </select>
+
+            <select 
+                value={selectedHeadSize}
+                onChange={(e) => setSelectedHeadSize(e.target.value)}
+            >
+                <option value="All">All</option>
+                <option value="97">97</option>
+                <option value="100">100</option>
             </select>
 
             <button onClick={handleClearFilters}>

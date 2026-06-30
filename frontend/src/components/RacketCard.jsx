@@ -35,6 +35,16 @@ function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacke
             )}
             <p>String Pattern: {racket.stringPattern}</p>
 
+            <p>Swingweight: {racket.swingweight}</p>
+
+            <p>Balance: {racket.balance}</p>
+
+            <p>Stiffness: {racket.stiffness}</p>
+
+            <p>Beam Width: {racket.beamWidth}</p>
+
+            <p>Play Style: {racket.playStyle}</p>
+
             <button onClick={() => handleDeleteRacket(racket.id)}>
                 Delete
             </button>

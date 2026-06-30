@@ -7,12 +7,27 @@ function RacketForm({ handleAddRacket }) {
     const [headSize, setHeadSize] = useState("")
     const [weight, setWeight] = useState("")
     const [stringPattern, setStringPattern] = useState("")
+    const [swingweight, setSwingweight] = useState("")
+    const [balance, setBalance] = useState("")
+    const [stiffness, setStiffness] = useState("")
+    const [beamWidth, setBeamWidth] = useState("")
+    const [playStyle, setPlayStyle] = useState("")
     const [error, setError] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        if (!brand || !model || !headSize || !weight || !stringPattern) {
+        if (!brand ||
+            !model ||
+            !headSize ||
+            !weight ||
+            !stringPattern ||
+            !swingweight ||
+            !balance ||
+            !stiffness ||
+            !beamWidth ||
+            !playStyle
+        ) {
             setError("Please fill out all fields")
             return
         }
@@ -24,7 +39,12 @@ function RacketForm({ handleAddRacket }) {
             model,
             headSize: Number(headSize),
             weight: Number(weight),
-            stringPattern
+            stringPattern,
+            swingweight: Number(swingweight),
+            balance,
+            stiffness: Number(stiffness),
+            beamWidth,
+            playStyle,
         }
 
         handleAddRacket(newRacket)
@@ -34,6 +54,11 @@ function RacketForm({ handleAddRacket }) {
         setHeadSize("")
         setWeight("")
         setStringPattern("")
+        setSwingweight("")
+        setBalance("")
+        setStiffness("")
+        setBeamWidth("")
+        setPlayStyle("")
     }
 
     return (
@@ -75,6 +100,41 @@ function RacketForm({ handleAddRacket }) {
                 value={stringPattern} 
                 onChange={(e) => setStringPattern(e.target.value)}
                 placeholder="String Pattern"
+            />
+
+            <input 
+                type="number" 
+                value={swingweight}
+                onChange={(e) => setSwingweight(e.target.value)}
+                placeholder="Swingweight"
+            />
+
+            <input 
+                type="text" 
+                value={balance}
+                onChange={(e) => setBalance(e.target.value)}
+                placeholder="Balance"
+            />
+
+            <input 
+                type="number" 
+                value={stiffness}
+                onChange={(e) => setStiffness(e.target.value)}
+                placeholder="Stiffness"
+            />
+
+            <input
+                type="text"
+                value={beamWidth}
+                onChange={(e) => setBeamWidth(e.target.value)}
+                placeholder="Beam Width"
+            />
+
+            <input 
+                type="text" 
+                value={playStyle}
+                onChange={(e) => setPlayStyle(e.target.value)}
+                placeholder="Play Style"
             />
 
             <button type="submit">Add Racket</button>

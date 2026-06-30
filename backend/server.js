@@ -14,10 +14,12 @@ let rackets = [
     model: "Pro Staff RF97 v13",
     headSize: 97,
     weight: 340,
-    stringPattern: "16x19",
-    stiffness: 68,
     swingweight: 335,
-    playStyle: "control",
+    balance: "12 pts HL",
+    stiffness: 68,
+    beamWidth: "21.5mm",
+    stringPattern: "16x19",
+    playStyle: "Control",
   },
   {
     id: 2,
@@ -25,10 +27,12 @@ let rackets = [
     model: "Pure Aero 100",
     headSize: 100,
     weight: 300,
-    stringPattern: "16x19",
-    stiffness: 69,
     swingweight: 322,
-    playStyle: "spin",
+    balance: "4 pts HL",
+    stiffness: 69,
+    beamWidth: "23/26/23mm",
+    stringPattern: "16x19",
+    playStyle: "Spin",
   },
   {
     id: 3,
@@ -36,10 +40,12 @@ let rackets = [
     model: "VCORE 100",
     headSize: 100,
     weight: 300,
-    stringPattern: "16x19",
-    stiffness: 67,
     swingweight: 320,
-    playStyle: "spin",
+    balance: "4 pts HL",
+    stiffness: 67,
+    beamWidth: "25.3/25.3/22mm",
+    stringPattern: "16x19",
+    playStyle: "Spin",
   },
 ];
 
@@ -48,7 +54,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/rackets", (req, res) => {
-  const { brand, stringPattern, search } = req.query
+  const { brand, stringPattern, playStyle, headSize, search } = req.query
 
   let filterRackets = rackets
 
@@ -60,8 +66,18 @@ app.get("/rackets", (req, res) => {
     filterRackets = filterRackets.filter((racket) => racket.stringPattern === stringPattern)
   }
 
+  if (playStyle) {
+    filterRackets = filterRackets.filter((racket) => racket.playStyle === playStyle)
+  }
+
+  if (headSize) {
+    filterRackets = filterRackets.filter(
+      (racket) => racket.headSize === Number(headSize)
+    )
+  }
+
   if (search) {
-    filteredRackets = filteredRackets.filter((racket) =>
+    filterRackets = filterRackets.filter((racket) =>
       racket.brand.toLowerCase().includes(search.toLowerCase()) ||
       racket.model.toLowerCase().includes(search.toLowerCase())
     )
@@ -83,9 +99,29 @@ app.get("/rackets/:id", (req, res) => {
 })
 
 app.post("/rackets", (req, res) => {
-  const { brand, model, headSize, weight, stringPattern } = req.body
+  const { brand,
+    model,
+    headSize,
+    weight,
+    stringPattern,
+    swingweight,
+    balance,
+    stiffness,
+    beamWidth,
+    playStyle,
+  } = req.body
 
-  if (!brand || !model || !headSize || !weight || !stringPattern) {
+  if (!brand ||
+    !model ||
+    !headSize ||
+    !weight ||
+    !stringPattern ||
+    !swingweight ||
+    !balance ||
+    !stiffness ||
+    !beamWidth ||
+    !playStyle
+  ) {
       return res.status(400).json({ error: "Missing required racket fields" })
   }
 
@@ -100,6 +136,11 @@ app.post("/rackets", (req, res) => {
   headSize,
   weight,
   stringPattern,
+  swingweight,
+  balance,
+  stiffness,
+  beamWidth,
+  playStyle,
   }
 
   rackets.push(newRacket)
