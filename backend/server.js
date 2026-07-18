@@ -7,84 +7,36 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-let rackets = [
-  {
-    id: 1,
-    brand: "Wilson",
-    model: "Pro Staff RF97 v13",
-    headSize: 97,
-    weight: 340,
-    swingweight: 335,
-    balance: "12 pts HL",
-    stiffness: 68,
-    beamWidth: "21.5mm",
-    stringPattern: "16x19",
-    playStyle: "Control",
-  },
-  {
-    id: 2,
-    brand: "Babolat",
-    model: "Pure Aero 100",
-    headSize: 100,
-    weight: 300,
-    swingweight: 322,
-    balance: "4 pts HL",
-    stiffness: 69,
-    beamWidth: "23/26/23mm",
-    stringPattern: "16x19",
-    playStyle: "Spin",
-  },
-  {
-    id: 3,
-    brand: "Yonex",
-    model: "VCORE 100",
-    headSize: 100,
-    weight: 300,
-    swingweight: 320,
-    balance: "4 pts HL",
-    stiffness: 67,
-    beamWidth: "25.3/25.3/22mm",
-    stringPattern: "16x19",
-    playStyle: "Spin",
-  },
-];
+const pool = require("./db")
 
 app.get("/", (req, res) => {
   res.send("Tennis Racket Finder API is running");
 });
 
-app.get("/rackets", (req, res) => {
-  const { brand, stringPattern, playStyle, headSize, search } = req.query
+app.get("/rackets", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM rackets")
 
-  let filterRackets = rackets
+    const rackets = result.rows.map((row) => ({
+      id: row.id,
+      brand: row.brand,
+      model: row.model,
+      headSize: row.head_size,
+      weight: row.weight,
+      swingweight: row.swingweight,
+      balance: row.balance,
+      stiffness: row.stiffness,
+      beamWidth: row.beam_width,
+      stringPattern: row.string_pattern,
+      playStyle: row.play_style,
+    }))
 
-  if (brand) {
-    filterRackets = filterRackets.filter((racket) => racket.brand === brand)
+    res.json(rackets)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "Server error" })
   }
-
-  if (stringPattern) {
-    filterRackets = filterRackets.filter((racket) => racket.stringPattern === stringPattern)
-  }
-
-  if (playStyle) {
-    filterRackets = filterRackets.filter((racket) => racket.playStyle === playStyle)
-  }
-
-  if (headSize) {
-    filterRackets = filterRackets.filter(
-      (racket) => racket.headSize === Number(headSize)
-    )
-  }
-
-  if (search) {
-    filterRackets = filterRackets.filter((racket) =>
-      racket.brand.toLowerCase().includes(search.toLowerCase()) ||
-      racket.model.toLowerCase().includes(search.toLowerCase())
-    )
-  }
-
-  res.json(filterRackets);
-});
+})
 
 app.get("/rackets/:id", (req, res) => {
   const racketId = Number(req.params.id)
