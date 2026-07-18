@@ -15,7 +15,37 @@ app.get("/", (req, res) => {
 
 app.get("/rackets", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM rackets")
+    const { brand, stringPattern, playStyle, headSize, search } = req.query
+
+    let query = "SELECT * FROM rackets WHERE 1=1"
+    const values = []
+
+    if (brand) {
+      values.push(brand)
+      query += ` AND brand = $${values.length}`
+    }
+
+    if (stringPattern) {
+      values.push(stringPattern)
+      query += ` AND string_pattern = $${values.length}`
+    }
+
+    if (playStyle) {
+      values.push(playStyle)
+      query += ` AND play_style = $${values.length}`
+    }
+
+    if (headSize) {
+      values.push(Number(headSize))
+      query += ` AND head_size = $${values.length}`
+    }
+
+    if (search) {
+      values.push(`%${search}%`)
+      query += ` AND (brand ILIKE $${values.length} OR model ILIKE $${values.length})`
+    }
+
+    const result = await pool.query(query, values)
 
     const rackets = result.rows.map((row) => ({
       id: row.id,
@@ -38,16 +68,40 @@ app.get("/rackets", async (req, res) => {
   }
 })
 
-app.get("/rackets/:id", (req, res) => {
-  const racketId = Number(req.params.id)
+app.get("/rackets/:id", async (req, res) => {
+  try {
+    const racketId = Number(req.params.id)
 
-  const racket = rackets.find((racket) => racket.id === racketId)
+    const result = await pool.query(
+      "SELECT * FROM rackets WHERE id = $1",
+      [racketId]
+    )
 
-  if (!racket) {
-    return res.status(404).json({ error: "Racket not found" })
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Racket not found" })
+    }
+
+    const row = result.rows[0]
+
+    const racket = {
+      id: row.id,
+      brand: row.brand,
+      model: row.model,
+      headSize: row.head_size,
+      weight: row.weight,
+      swingweight: row.swingweight,
+      balance: row.balance,
+      stiffness: row.stiffness,
+      beamWidth: row.beam_width,
+      stringPattern: row.string_pattern,
+      playStyle: row.play_style,
+    }
+
+    res.json(racket)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "Server error" })
   }
-
-  res.json(racket)
 })
 
 app.post("/rackets", (req, res) => {
