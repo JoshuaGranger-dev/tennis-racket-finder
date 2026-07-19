@@ -9,6 +9,22 @@ app.use(express.json());
 
 const pool = require("./db")
 
+function formatRacket(row) {
+  return {
+    id: row.id,
+    brand: row.brand,
+    model: row.model,
+    headSize: row.head_size,
+    weight: row.weight,
+    swingweight: row.swingweight,
+    balance: row.balance,
+    stiffness: row.stiffness,
+    beamWidth: row.beam_width,
+    stringPattern: row.string_pattern,
+    playStyle: row.play_style,
+  }
+}
+
 app.get("/", (req, res) => {
   res.send("Tennis Racket Finder API is running");
 });
@@ -47,19 +63,7 @@ app.get("/rackets", async (req, res) => {
 
     const result = await pool.query(query, values)
 
-    const rackets = result.rows.map((row) => ({
-      id: row.id,
-      brand: row.brand,
-      model: row.model,
-      headSize: row.head_size,
-      weight: row.weight,
-      swingweight: row.swingweight,
-      balance: row.balance,
-      stiffness: row.stiffness,
-      beamWidth: row.beam_width,
-      stringPattern: row.string_pattern,
-      playStyle: row.play_style,
-    }))
+    const rackets = result.rows.map(formatRacket)
 
     res.json(rackets)
   } catch (error) {
@@ -81,21 +85,7 @@ app.get("/rackets/:id", async (req, res) => {
       return res.status(404).json({ error: "Racket not found" })
     }
 
-    const row = result.rows[0]
-
-    const racket = {
-      id: row.id,
-      brand: row.brand,
-      model: row.model,
-      headSize: row.head_size,
-      weight: row.weight,
-      swingweight: row.swingweight,
-      balance: row.balance,
-      stiffness: row.stiffness,
-      beamWidth: row.beam_width,
-      stringPattern: row.string_pattern,
-      playStyle: row.play_style,
-    }
+    const racket = formatRacket(result.rows[0])
 
     res.json(racket)
   } catch (error) {
@@ -160,23 +150,9 @@ app.post("/rackets", async (req, res) => {
       ]
     )
 
-    const row = result.rows[0]
+    const racket = formatRacket(result.rows[0])
 
-    const newRacket = {
-      id: row.id,
-      brand: row.brand,
-      model: row.model,
-      headSize: row.head_size,
-      weight: row.weight,
-      swingweight: row.swingweight,
-      balance: row.balance,
-      stiffness: row.stiffness,
-      beamWidth: row.beam_width,
-      stringPattern: row.string_pattern,
-      playStyle: row.play_style,
-    }
-
-    res.status(201).json(newRacket)
+    res.status(201).json(racket)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: "Server error" })
@@ -254,21 +230,7 @@ app.patch("/rackets/:id", async (req, res) => {
       return res.status(404).json({ error: "Racket not found" })
     }
 
-    const row = result.rows[0]
-
-    const updatedRacket = {
-      id: row.id,
-      brand: row.brand,
-      model: row.model,
-      headSize: row.head_size,
-      weight: row.weight,
-      swingweight: row.swingweight,
-      balance: row.balance,
-      stiffness: row.stiffness,
-      beamWidth: row.beam_width,
-      stringPattern: row.string_pattern,
-      playStyle: row.play_style,
-    }
+    const updatedRacket = formatRacket(result.rows[0])
 
     res.json(updatedRacket)
   } catch (error) {
