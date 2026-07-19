@@ -183,18 +183,24 @@ app.post("/rackets", async (req, res) => {
   }
 })
 
-app.delete("/rackets/:id", (req, res) => {
-  const racketId = Number(req.params.id)
+app.delete("/rackets/:id", async (req, res) => {
+  try {
+    const racketId = Number(req.params.id)
 
-  const racketExists = rackets.some((racket) => racket.id === racketId)
+    const result = await pool.query(
+      "DELETE FROM rackets WHERE id = $1 RETURNING *",
+      [racketId]
+    )
 
-  if (!racketExists) {
-    return res.status(404).json({ error: "Racket not found" })
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Racket not found"})
+    }
+
+    res.json({ message: "Racket deleted successfully"})
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "server error"})
   }
-
-  rackets = rackets.filter((racket) => racket.id !== racketId)
-
-  res.json({ message: "Racket deleted successfully" })
 })
 
 app.patch("/rackets/:id", (req, res) => {
