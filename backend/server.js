@@ -104,54 +104,83 @@ app.get("/rackets/:id", async (req, res) => {
   }
 })
 
-app.post("/rackets", (req, res) => {
-  const { brand,
-    model,
-    headSize,
-    weight,
-    stringPattern,
-    swingweight,
-    balance,
-    stiffness,
-    beamWidth,
-    playStyle,
-  } = req.body
+app.post("/rackets", async (req, res) => {
+  try {
+    const {
+      brand,
+      model,
+      headSize,
+      weight,
+      stringPattern,
+      swingweight,
+      balance,
+      stiffness,
+      beamWidth,
+      playStyle,
+    } = req.body
 
-  if (!brand ||
-    !model ||
-    !headSize ||
-    !weight ||
-    !stringPattern ||
-    !swingweight ||
-    !balance ||
-    !stiffness ||
-    !beamWidth ||
-    !playStyle
-  ) {
+    if (
+      !brand ||
+      !model ||
+      !headSize ||
+      !weight ||
+      !stringPattern
+    ) {
       return res.status(400).json({ error: "Missing required racket fields" })
+    }
+
+    const result = await pool.query(
+      `INSERT INTO rackets
+        (
+          brand,
+          model,
+          head_size,
+          weight,
+          string_pattern,
+          swingweight,
+          balance,
+          stiffness,
+          beam_width,
+          play_style
+        )
+       VALUES
+        ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+       RETURNING *`,
+      [
+        brand,
+        model,
+        Number(headSize),
+        Number(weight),
+        stringPattern,
+        swingweight ? Number(swingweight) : null,
+        balance || null,
+        stiffness ? Number(stiffness) : null,
+        beamWidth || null,
+        playStyle || null,
+      ]
+    )
+
+    const row = result.rows[0]
+
+    const newRacket = {
+      id: row.id,
+      brand: row.brand,
+      model: row.model,
+      headSize: row.head_size,
+      weight: row.weight,
+      swingweight: row.swingweight,
+      balance: row.balance,
+      stiffness: row.stiffness,
+      beamWidth: row.beam_width,
+      stringPattern: row.string_pattern,
+      playStyle: row.play_style,
+    }
+
+    res.status(201).json(newRacket)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "Server error" })
   }
-
-  const newId = rackets.length > 0
-    ? Math.max(...rackets.map((racket) => racket.id)) + 1
-    : 1
-
-  const newRacket = {
-  id: newId,
-  brand,
-  model,
-  headSize,
-  weight,
-  stringPattern,
-  swingweight,
-  balance,
-  stiffness,
-  beamWidth,
-  playStyle,
-  }
-
-  rackets.push(newRacket)
-
-  res.status(201).json(newRacket)
 })
 
 app.delete("/rackets/:id", (req, res) => {
