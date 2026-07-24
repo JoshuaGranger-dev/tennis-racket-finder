@@ -5,6 +5,22 @@ function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacke
     const [editedWeight, setEditedWeight] = useState(racket.weight)
     const isEditing = editingRacket === racket.id 
 
+    function formatBalance(balancePoints) {
+        if (balancePoints === null || balancePoints === undefined) {
+            return "Not Listed"
+        }
+
+        if (balancePoints < 0) {
+            return `${balancePoints} Head Light`
+        }
+
+        if (balancePoints < 0) {
+            return `${balancePoints} Head Heavy`
+        }
+
+        return "0 Even Balance"
+    }
+
     return (
         <div>
             <h2>
@@ -37,7 +53,7 @@ function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacke
 
             <p>Swingweight: {racket.swingweight}</p>
 
-            <p>Balance: {racket.balance}</p>
+            <p>Balance: {formatBalance(racket.balancePoints)}</p>
 
             <p>Stiffness: {racket.stiffness}</p>
 

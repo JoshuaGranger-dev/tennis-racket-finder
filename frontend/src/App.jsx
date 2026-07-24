@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import RacketList from "./components/RacketList"
 import FilterPanel from "./components/FilterPanel"
 import RacketForm from "./components/RacketForm"
+import Questionnaire from "./components/Questionnaire"
 
 function App() {
   const [rackets, setRackets] = useState([])
@@ -166,6 +167,11 @@ function App() {
         editingRacket={editingRacket}
         setEditingRacket={setEditingRacket}
       />
+
+      <Questionnaire
+        rackets={rackets} 
+      />
+
     </div>
   )
 }

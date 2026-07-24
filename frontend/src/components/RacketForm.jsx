@@ -8,7 +8,7 @@ function RacketForm({ handleAddRacket }) {
     const [weight, setWeight] = useState("")
     const [stringPattern, setStringPattern] = useState("")
     const [swingweight, setSwingweight] = useState("")
-    const [balance, setBalance] = useState("")
+    const [balancePoints, setBalancePoints] = useState("")
     const [stiffness, setStiffness] = useState("")
     const [beamWidth, setBeamWidth] = useState("")
     const [playStyle, setPlayStyle] = useState("")
@@ -23,7 +23,7 @@ function RacketForm({ handleAddRacket }) {
             !weight ||
             !stringPattern ||
             !swingweight ||
-            !balance ||
+            !balancePoints === "" ||
             !stiffness ||
             !beamWidth ||
             !playStyle
@@ -41,7 +41,7 @@ function RacketForm({ handleAddRacket }) {
             weight: Number(weight),
             stringPattern,
             swingweight: Number(swingweight),
-            balance,
+            balancePoints: Number(balancePoints),
             stiffness: Number(stiffness),
             beamWidth,
             playStyle,
@@ -55,7 +55,7 @@ function RacketForm({ handleAddRacket }) {
         setWeight("")
         setStringPattern("")
         setSwingweight("")
-        setBalance("")
+        setBalancePoints("")
         setStiffness("")
         setBeamWidth("")
         setPlayStyle("")
@@ -110,11 +110,13 @@ function RacketForm({ handleAddRacket }) {
             />
 
             <input 
-                type="text" 
-                value={balance}
-                onChange={(e) => setBalance(e.target.value)}
-                placeholder="Balance"
+                type="number" 
+                value={balancePoints}
+                onChange={(e) => setBalancePoints(e.target.value)}
+                placeholder="Balance points"
             />
+
+            <p>Negative = head light, 0 = even, positive = head heavy</p>
 
             <input 
                 type="number" 
