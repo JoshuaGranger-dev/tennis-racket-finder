@@ -278,7 +278,7 @@ function Questionnaire({ rackets }) {
     return "Possible Match"
   }
 
-  function getBestFor(racket) {
+  function getBestFor() {
     const bestFor = []
 
     if (answers.mainNeed) {
