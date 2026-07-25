@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const racketRoutes = require("./routes/rackets")
+const recommendationRoutes = require("./routes/recommendations")
 
 const app = express();
 const PORT = 5000;
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/rackets", racketRoutes)
+app.use("/recommendations", recommendationRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

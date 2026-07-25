@@ -168,8 +168,7 @@ function App() {
         setEditingRacket={setEditingRacket}
       />
 
-      <Questionnaire
-        rackets={rackets} 
+      <Questionnaire 
       />
 
     </div>
