@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import RacketList from "./components/RacketList"
-import FilterPanel from "./components/FilterPanel"
-import RacketForm from "./components/RacketForm"
-import Questionnaire from "./components/Questionnaire"
+import { Routes, Route, Link } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import RacketPage from "./pages/RacketPage"
+import GuidePage from "./pages/GuidePage"
 
 function App() {
   const [rackets, setRackets] = useState([])
@@ -85,7 +85,7 @@ function App() {
       })
   }
 
-  function handleAddRacket(newRacket) {
+  /*function handleAddRacket(newRacket) {
     fetch("http://localhost:5000/rackets", {
       method: "POST",
       headers: {
@@ -100,7 +100,7 @@ function App() {
       .catch((error) => {
         console.error(error)
       })
-  }
+  }*/
 
   function handleUpdateWeight(id, newWeight) {
 
@@ -135,43 +135,43 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Tennis Racket Finder</h1>
+    <>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/rackets">Browse Rackets</Link>
+        <Link to="/guide">Racket Guide</Link>
+      </nav>
 
-      <RacketForm
-        handleAddRacket={handleAddRacket}
-      />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-      <FilterPanel
-        searchTerm={searchTerm}  
-        setSearchTerm={setSearchTerm}
-        selectedBrand={selectedBrand}
-        setSelectedBrand={setSelectedBrand}
-        selectedStringPattern={selectedStringPattern}
-        setSelectedStringPattern={setSelectedStringPattern}
-        selectedPlayStyle={selectedPlayStyle}
-        setSelectedPlayStyle={setSelectedPlayStyle}
-        selectedHeadSize={selectedHeadSize}
-        setSelectedHeadSize={setSelectedHeadSize}
-      />
+        <Route
+          path="/rackets"
+          element={
+            <RacketPage
+              rackets={rackets}
+              filteredRackets={filteredRackets}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              selectedBrand={selectedBrand}
+              setSelectedBrand={setSelectedBrand}
+              selectedStringPattern={selectedStringPattern}
+              setSelectedStringPattern={setSelectedStringPattern}
+              selectedPlayStyle={selectedPlayStyle}
+              setSelectedPlayStyle={setSelectedPlayStyle}
+              selectedHeadSize={selectedHeadSize}
+              setSelectedHeadSize={setSelectedHeadSize}
+              handleDeleteRacket={handleDeleteRacket}
+              handleUpdateWeight={handleUpdateWeight}
+              editingRacket={editingRacket}
+              setEditingRacket={setEditingRacket}
+            />
+          }
+        />
 
-      <p>Showing {filteredRackets.length} of {rackets.length} rackets</p>
-      {filteredRackets.length === 0 && (
-        <p>No rackets match your filters.</p>
-      )}
-
-      <RacketList 
-        rackets={filteredRackets}
-        handleDeleteRacket={handleDeleteRacket}
-        handleUpdateWeight={handleUpdateWeight}
-        editingRacket={editingRacket}
-        setEditingRacket={setEditingRacket}
-      />
-
-      <Questionnaire 
-      />
-
-    </div>
+        <Route path="/guide" element={<GuidePage />} />
+      </Routes>
+    </>
   )
 }
 
