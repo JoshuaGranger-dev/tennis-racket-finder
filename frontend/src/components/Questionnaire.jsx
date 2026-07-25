@@ -10,6 +10,8 @@ function Questionnaire() {
   })
 
   const [recommendations, setRecommendations] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState([])
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -35,6 +37,10 @@ function Questionnaire() {
   async function handleSubmit(e) {
     e.preventDefault()
 
+    setIsLoading(true)
+    setError("")
+    setRecommendations([])
+
     try {
       const response = await fetch("http://localhost:5000/recommendations", {
         method: "POST",
@@ -44,6 +50,10 @@ function Questionnaire() {
         body: JSON.stringify(answers),
       })
 
+      if (!response.ok) {
+        throw new Error("Could not get recommendations")
+      }
+
       const data = await response.json()
 
       setRecommendations(data)
@@ -51,7 +61,10 @@ function Questionnaire() {
       console.log("Questionnaire answers:", answers)
       console.log("Recommendations:", data)
     }catch (error) {
-      console.error(error)
+      console.error("Recommendation error:", error)
+      setError("Could not get recommendations. Please try again.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -142,8 +155,15 @@ function Questionnaire() {
           </select>
         </label>
 
-        <button type="submit">Get Recommendation</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Getting recommendations..." : "Get Recommendation"}
+        </button>
+
+        {error && <p>{error}</p>}
+
       </form>
+
+      {isLoading && <p>Finding your best racket matches...</p>}
 
       {recommendations.length > 0 && (
         <div>
@@ -156,7 +176,7 @@ function Questionnaire() {
               </h4>
 
               <p>Match: {getMatchStrength(racket.score)}</p>
-              <p>Best for: {racket.bestFor || "General fit"}</p>
+              <p>Matched priorities: {racket.bestFor || "General fit"}</p>
               <p>Score: {racket.score}</p>
 
               {racket.reasons.length > 0 ? (
