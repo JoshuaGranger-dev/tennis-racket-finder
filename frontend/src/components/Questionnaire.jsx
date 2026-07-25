@@ -167,7 +167,7 @@ function Questionnaire() {
 
       {recommendations.length > 0 && (
         <div>
-          <h3>Your Recommendations</h3>
+          <h3>Top 3 Racket Matches</h3>
 
           {recommendations.map((racket) => (
             <div key={racket.id}>
@@ -176,17 +176,33 @@ function Questionnaire() {
               </h4>
 
               <p>Match: {getMatchStrength(racket.score)}</p>
-              <p>Matched priorities: {racket.bestFor || "General fit"}</p>
-              <p>Score: {racket.score}</p>
+              <p>Racket strengths: {racket.bestFor || "General fit"}</p>
+              <p>Fit score: {racket.score}</p>
 
               {racket.reasons.length > 0 ? (
-                <ul>
-                  {racket.reasons.slice(0, 4).map((reason, index) => (
-                    <li key={index}>{reason}</li>
-                  ))}
-                </ul>
+                <div>
+                  <h4>Pros</h4>
+
+                  <ul>
+                    {racket.reasons.slice(0, 3).map((reason, index) => (
+                      <li key={index}>{reason}</li>
+                    ))}
+                  </ul>
+                </div>
               ) : (
                 <p>No strong match reasons yet.</p>
+              )}
+
+              {racket.tradeoffs && racket.tradeoffs.length > 0 && (
+                <div>
+                  <h4>Cons</h4>
+
+                  <ul>
+                    {racket.tradeoffs.slice(0, 3).map((tradeoff, index) => (
+                      <li key={index}>{tradeoff}</li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           ))}
