@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import RacketPage from "./pages/RacketPage"
 import GuidePage from "./pages/GuidePage"
+import "./App.css"
 
 function App() {
   const [rackets, setRackets] = useState([])

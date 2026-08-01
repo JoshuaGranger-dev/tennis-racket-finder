@@ -166,46 +166,73 @@ function Questionnaire() {
       {isLoading && <p>Finding your best racket matches...</p>}
 
       {recommendations.length > 0 && (
-        <div>
-          <h3>Top 3 Racket Matches</h3>
+        <div className="recommendations">
+          <h3>Your Top 5 Racket Matches</h3>
 
-          {recommendations.map((racket) => (
-            <div key={racket.id}>
-              <h4>
-                {racket.brand} {racket.model}
-              </h4>
-
-              <p>Match: {getMatchStrength(racket.score)}</p>
-              <p>Racket strengths: {racket.bestFor || "General fit"}</p>
-              <p>Fit score: {racket.score}</p>
-
-              {racket.reasons.length > 0 ? (
-                <div>
-                  <h4>Pros</h4>
-
-                  <ul>
-                    {racket.reasons.slice(0, 3).map((reason, index) => (
-                      <li key={index}>{reason}</li>
-                    ))}
-                  </ul>
+          <div className="recommendation-grid">
+            {recommendations.map((racket) => (
+              <div className="recommendation-card" key={racket.id}>
+                <div className="card-image">
+                  {racket.imageUrl ? (
+                    <img
+                      src={racket.imageUrl}
+                      alt={`${racket.brand} ${racket.model}`}
+                      className="racket-image"
+                    />
+                  ) : (
+                    <div className="racket-image-placeholder">
+                      {racket.brand}
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <p>No strong match reasons yet.</p>
-              )}
 
-              {racket.tradeoffs && racket.tradeoffs.length > 0 && (
-                <div>
-                  <h4>Cons</h4>
+                <div className="card-content">
+                  <div className="recommendation-header">
+                    <div>
+                      <h4>{racket.brand} {racket.model}</h4>
+                      <p className="strengths">{racket.bestFor || "General fit"}</p>
+                    </div>
 
-                  <ul>
-                    {racket.tradeoffs.slice(0, 3).map((tradeoff, index) => (
-                      <li key={index}>{tradeoff}</li>
-                    ))}
-                  </ul>
+                    <span className="match-badge">{getMatchStrength(racket.score)}</span>
+                  </div>
+
+                  <div className="spec-row">
+                    <span>{racket.headSize} sq in</span>
+                    <span>{racket.weight}g</span>
+                    <span>{racket.swingweight} SW</span>
+                    <span>{racket.stringPattern}</span>
+                    <span>{racket.balancePoints} pts</span>
+                  </div>
+
+                  <div className="pros-cons">
+                    <div>
+                      <h4>Pros</h4>
+                      {racket.reasons.length > 0 ? (
+                        <ul>
+                          {racket.reasons.slice(0, 3).map((reason, index) => (
+                            <li key={index}>{reason}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>No strong match reasons yet.</p>
+                      )}
+                    </div>
+
+                    {racket.tradeoffs && racket.tradeoffs.length > 0 && (
+                      <div>
+                        <h4>Cons</h4>
+                        <ul>
+                          {racket.tradeoffs.slice(0, 2).map((tradeoff, index) => (
+                            <li key={index}>{tradeoff}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>
