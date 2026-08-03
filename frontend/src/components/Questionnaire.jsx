@@ -188,12 +188,12 @@ function Questionnaire() {
 
                 <div className="card-content">
                   <div className="recommendation-header">
-                    <div>
+                    <div className="title-row">
                       <h4>{racket.brand} {racket.model}</h4>
-                      <p className="strengths">{racket.bestFor || "General fit"}</p>
+                      <span className="match-badge">{getMatchStrength(racket.score)}</span>
                     </div>
 
-                    <span className="match-badge">{getMatchStrength(racket.score)}</span>
+                    <p className="strengths">{racket.bestFor?.split(",").slice(0,4).join(", ") || "General fit"}</p>
                   </div>
 
                   <div className="spec-row">

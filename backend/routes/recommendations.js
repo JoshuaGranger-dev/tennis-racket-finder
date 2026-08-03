@@ -16,6 +16,7 @@ function formatRacket(row) {
     beamWidth: row.beam_width,
     stringPattern: row.string_pattern,
     playStyle: row.play_style,
+    imageUrl: row.image_url,
   }
 }
 
