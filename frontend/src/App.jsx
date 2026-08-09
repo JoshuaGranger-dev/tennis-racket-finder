@@ -73,6 +73,20 @@ function App() {
       )
     }
 
+  const brands = [...new Set(rackets.map((racket) => racket.brand))].sort()
+
+  const stringPatterns = [
+    ...new Set(rackets.map((racket) => racket.stringPattern).filter(Boolean)),
+  ].sort()
+
+  const playStyles = [
+    ...new Set(rackets.map((racket) => racket.playStyle).filter(Boolean)),
+  ].sort()
+
+  const headSizes = [
+    ...new Set(rackets.map((racket) => racket.headSize).filter(Boolean)),
+  ].sort((a, b) => a - b)
+
   function handleDeleteRacket(id) {
     fetch(`http://localhost:5000/rackets/${id}`, {
       method: "DELETE",
@@ -152,6 +166,10 @@ function App() {
             <RacketPage
               rackets={rackets}
               filteredRackets={filteredRackets}
+              brands={brands}
+              stringPatterns={stringPatterns}
+              playStyles={playStyles}
+              headSizes={headSizes}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
               selectedBrand={selectedBrand}

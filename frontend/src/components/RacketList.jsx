@@ -1,11 +1,7 @@
 import RacketCard from "./RacketCard"
 
 function RacketList({ 
-    rackets,
-    handleDeleteRacket,
-    handleUpdateWeight,
-    editingRacket,
-    setEditingRacket 
+    rackets 
 }) {
     return (
         <div className="racket-list">
@@ -13,10 +9,6 @@ function RacketList({
                 <RacketCard
                 key={racket.id}
                 racket={racket}
-                handleDeleteRacket={handleDeleteRacket}
-                handleUpdateWeight={handleUpdateWeight}
-                editingRacket={editingRacket}
-                setEditingRacket={setEditingRacket}
                 />
             ))}
         </div>

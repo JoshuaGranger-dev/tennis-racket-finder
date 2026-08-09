@@ -1,5 +1,5 @@
 
-function RacketCard({ racket, handleDeleteRacket, setEditingRacket }) {
+function RacketCard({ racket }) {
   function formatBalance(balancePoints) {
     if (balancePoints === null || balancePoints === undefined) {
       return "Not Listed"
@@ -50,7 +50,7 @@ function RacketCard({ racket, handleDeleteRacket, setEditingRacket }) {
           <p>Stiffness: {racket.stiffness || "Not listed"}</p>
           <p>Beam Width: {racket.beamWidth || "Not listed"}</p>
         </div>
-
+        {/*
         <div className="racket-actions">
           {setEditingRacket && (
             <button onClick={() => setEditingRacket(racket)}>Edit</button>
@@ -60,6 +60,7 @@ function RacketCard({ racket, handleDeleteRacket, setEditingRacket }) {
             <button onClick={() => handleDeleteRacket(racket.id)}>Delete</button>
           )}
         </div>
+        */}
       </div>
     </div>
   )

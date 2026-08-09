@@ -4,6 +4,10 @@ import RacketList from "../components/RacketList"
 function RacketsPage({
   rackets,
   filteredRackets,
+  brands,
+  stringPatterns,
+  playStyles,
+  headSizes,
   searchTerm,
   setSearchTerm,
   selectedBrand,
@@ -28,6 +32,10 @@ function RacketsPage({
       </p>
 
       <FilterPanel
+        brands={brands}
+        stringPatterns={stringPatterns}
+        playStyles={playStyles}
+        headSizes={headSizes}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         selectedBrand={selectedBrand}

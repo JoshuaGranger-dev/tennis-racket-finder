@@ -1,4 +1,8 @@
 function FilterPanel({
+    brands,
+    stringPatterns,
+    playStyles,
+    headSizes,
     searchTerm,
     setSearchTerm,
     selectedBrand,
@@ -27,42 +31,52 @@ function FilterPanel({
                 placeholder="Search by brand or model"
             />
 
-            <select 
-                value={selectedBrand} 
+            <select
+                value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
-            >
-                <option value="All">All</option>
-                <option value="Wilson">Wilson</option>
-                <option value="Babolat">Babolat</option>
-                <option value="Yonex">Yonex</option>
+                >
+                <option value="All">Brand</option>
+                {brands.map((brand) => (
+                    <option key={brand} value={brand}>
+                    {brand}
+                    </option>
+                ))}
             </select>
 
-            <select 
-                value={selectedStringPattern} 
+            <select
+                value={selectedStringPattern}
                 onChange={(e) => setSelectedStringPattern(e.target.value)}
-            >
-                <option value="All">All</option>
-                <option value="16x19">16x19</option>
-                <option value="18x20">18x20</option>
-                <option value="16x20">16x20</option>
+                >
+                <option value="All">String Pattern</option>
+                {stringPatterns.map((pattern) => (
+                    <option key={pattern} value={pattern}>
+                    {pattern}
+                    </option>
+                ))}
             </select>
 
-            <select 
+            <select
                 value={selectedPlayStyle}
-                onChange={(e) => setSelectedPlayStyle(e.target.value)}    
-            >
-                <option value="All">All</option>
-                <option value="Spin">Spin</option>
-                <option value="Control">Control</option>
+                onChange={(e) => setSelectedPlayStyle(e.target.value)}
+                >
+                <option value="All">Play Style</option>
+                {playStyles.map((style) => (
+                    <option key={style} value={style}>
+                    {style}
+                    </option>
+                ))}
             </select>
 
-            <select 
+           <select
                 value={selectedHeadSize}
                 onChange={(e) => setSelectedHeadSize(e.target.value)}
-            >
-                <option value="All">All</option>
-                <option value="97">97</option>
-                <option value="100">100</option>
+                >
+                <option value="All">Head Size</option>
+                {headSizes.map((size) => (
+                    <option key={size} value={size}>
+                    {size} sq in
+                    </option>
+                ))}
             </select>
 
             <button onClick={handleClearFilters}>
