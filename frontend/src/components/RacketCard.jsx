@@ -50,17 +50,6 @@ function RacketCard({ racket }) {
           <p>Stiffness: {racket.stiffness || "Not listed"}</p>
           <p>Beam Width: {racket.beamWidth || "Not listed"}</p>
         </div>
-        {/*
-        <div className="racket-actions">
-          {setEditingRacket && (
-            <button onClick={() => setEditingRacket(racket)}>Edit</button>
-          )}
-
-          {handleDeleteRacket && (
-            <button onClick={() => handleDeleteRacket(racket.id)}>Delete</button>
-          )}
-        </div>
-        */}
       </div>
     </div>
   )

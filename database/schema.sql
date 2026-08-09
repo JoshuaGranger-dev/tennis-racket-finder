@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS rackets;
+
 CREATE TABLE rackets (
   id SERIAL PRIMARY KEY,
   brand TEXT NOT NULL,
@@ -5,9 +7,10 @@ CREATE TABLE rackets (
   head_size INTEGER NOT NULL,
   weight INTEGER NOT NULL,
   swingweight INTEGER,
-  balance TEXT,
+  balance_points INTEGER,
   stiffness INTEGER,
   beam_width TEXT,
   string_pattern TEXT NOT NULL,
-  play_style TEXT
+  play_style TEXT,
+  image_url TEXT
 );

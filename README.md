@@ -159,6 +159,24 @@ The frontend should run at:
 ```txt
 http://localhost:5173
 ```
+## Database Setup
+
+The project includes database setup files in the `database` folder:
+
+```txt
+database/
+  schema.sql
+  seed.sql
+  rackets_seed_data.csv
+```
+To recreate the local database:
+1. Create a PostgreSQL database
+
+2. Run `database/schema.sql` to create the rackets table. 
+
+3. Import `database/rackets_seed_data.csv` into the rackets table using pgAdmin.
+
+4. Add your PostgreSQL connection string to the backend `.env` file. 
 
 ## Environment Variables
 
@@ -189,6 +207,10 @@ tennis-racket-finder/
       pages/
       App.jsx
       App.css
+  databse/
+    schema.sql
+    seed.sql
+    rackets_seed_data.csv
   screenshots/
   README.md
 ```

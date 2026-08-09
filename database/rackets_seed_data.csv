@@ -1,0 +1,40 @@
+brand,model,head_size,weight,swingweight,stiffness,beam_width,string_pattern,play_style,balance_points,image_url
+Babolat,Pure Aero 2026,100,300,320,66,23/26/23 mm,16x19,Spin,-4,/racket-images/babolat-pure-aero-2026.webp
+Babolat,Pure Aero Rafa Origin,100,317,335,73,,16x19,Spin,-4,/racket-images/babolat-pure-aero-rafa-origin.webp
+Babolat,Pure Drive 2025,100,300,317,69,23/26/23 mm,16x19,Power,-4,/racket-images/babolat-pure-drive-2025.webp
+Babolat,Pure Drive 98 2025,98,305,326,,21/23/21 mm,16x20,Control,-6,/racket-images/babolat-pure-drive-98-2025.webp
+Babolat,Pure Strike 98 16x19,98,305,325,66,,16x19,Control,-6,/racket-images/babolat-pure-strike-98-16x19.webp
+Dunlop,CX 200,98,305,322,66,,16x19,Control,-7,/racket-images/dunlop-cx-200.webp
+Dunlop,FX 500 2025,100,300,320,68,23/26/23 mm,16x19,Power,-4,/racket-images/dunlop-fx-500-2025.webp
+Dunlop,SX 300,100,300,320,68,,16x19,Spin,-6,/racket-images/dunlop-sx-300.webp
+Gamma,RZR Bubba 117,117,264,313,62,22/23.5/22.5 mm,16x19,Power,7,/racket-images/gamma-rzr-bubba-117.webp
+Head,Extreme MP 2026,100,300,318,67,23/26/21 mm,16x19,Spin,-4,/racket-images/head-extreme-mp-2026.webp
+Head,Gravity MP 2025,100,295,323,59,22/22/22 mm,16x20,Comfort,-3,/racket-images/head-gravity-mp-2025.webp
+Head,Radical MP,98,305,323,66,,16x19,Control,-5,/racket-images/head-radical-mp.webp
+Head,Speed Pro,98,310,330,,,18x20,Control,0,/racket-images/head-speed-pro.webp
+Head,Titanium Ti.S6,115,252,312,75,,16x19,Power,8,/racket-images/head-titanium-ti-s6.webp
+Prince,O3 Legacy 110,110,266,327,73,25/27/26 mm,16x19,Power,3,/racket-images/prince-o3-legacy-110.webp
+Prince,O3 Legacy 120 2024,120,255,330,69,27.5/29.5/27 mm,16x19,Power,5,/racket-images/prince-o3-legacy-120-2024.webp
+Prince,O3 Phantom 100X 2025,100,310,324,66,,16x18,Comfort,-7,/racket-images/prince-o3-phantom-100x-2025.webp
+Prince,Phantom 100P,100,300,305,66,,16x19,Comfort,-4,/racket-images/prince-phantom-100p.webp
+Prince,Tour 100,100,300,310,67,,16x19,Control,-6,/racket-images/prince-tour-100.webp
+Tecnifibre,T-FIGHT 270,100,270,295,65,,16x19,Maneuverability,-6,/racket-images/tecnifibre-t-fight-270.webp
+Tecnifibre,T-FIGHT 305,98,305,324,63,22.5/22.5/22.5 mm,18x19,Control,-9,/racket-images/tecnifibre-t-fight-305.webp
+Tecnifibre,T-FIGHT 305S 2025,98,305,324,63,22.5/22.5/22.5 mm,18x19,Control,-9,/racket-images/tecnifibre-t-fight-305s-2025.webp
+Volkl,V-Cell 10,100,300,310,68,,16x18,Spin,-5,/racket-images/volkl-v-cell-10.webp
+Volkl,V-Cell 5,100,260,287,69,22/24/22 mm,16x18,Maneuverability,-1,/racket-images/volkl-v-cell-5.webp
+Volkl,V-Cell 6,100,300,305,68,,16x19,Power,-6,/racket-images/volkl-v-cell-6.webp
+Wilson,Blade 100 v10,100,300,319,61,22/22/22 mm,16x19,Control,-4,/racket-images/wilson-blade-100-v10.webp
+Head,Speed MP,100,300,329,60,,16x19,Control,-4,/racket-images/head-speed-mp.webp
+Wilson,Blade 98 16x19,98,305,324,62,,16x19,Control,-4,/racket-images/wilson-blade-98-16x19.webp
+Wilson,Clash 100 v3,100,295,308,54,24.5/24.5/24.5 mm,16x19,Comfort,-7,/racket-images/wilson-clash-100-v3.webp
+Wilson,Defyer 100,100,300,326,66,23.8/25/23 mm,16x19,Spin,-6,/racket-images/wilson-defyer-100.webp
+Wilson,Defyer 100L,100,285,312,65,23.8/25/23 mm,16x19,Spin,-4,/racket-images/wilson-defyer-100l.webp
+Wilson,Defyer 100UL,100,260,303,65,23.8/25/23 mm,16x19,Maneuverability,-2,/racket-images/wilson-defyer-100ul.webp
+Wilson,Hyper Hammer 5.3 Stretch OS,110,255,301,70,28/25/25 mm,16x20,Power,8,/racket-images/wilson-hyper-hammer-5-3-stretch-os.webp
+Wilson,Pro Staff 97,97,315,330,66,,16x19,Control,-10,/racket-images/wilson-pro-staff-97.webp
+Wilson,Ultra 100 v5,100,300,322,67,24/26.5/24.5 mm,16x19,Power,-4,/racket-images/wilson-ultra-100-v5.webp
+Yonex,EZONE 100 2025,100,300,315,68,24.5/26.5/23 mm,16x19,Power,-4,/racket-images/yonex-ezone-100-2025.webp
+Yonex,Percept 98,98,305,320,64,,16x20,Control,-6,/racket-images/yonex-percept-98.webp
+Yonex,VCORE 100 8th Gen,100,300,325,65,24/26/23 mm,16x19,Spin,-4,/racket-images/yonex-vcore-100-8th-gen.webp
+Yonex,VCORE 98,98,305,320,64,,16x19,Spin,-6,/racket-images/yonex-vcore-98.webp

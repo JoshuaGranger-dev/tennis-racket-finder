@@ -100,23 +100,6 @@ function App() {
       })
   }
 
-  /*function handleAddRacket(newRacket) {
-    fetch("http://localhost:5000/rackets", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-      body: JSON.stringify(newRacket),
-    })
-      .then((res) => res.json())
-      .then((createdRacket) => {
-        setRackets([ ...rackets, createdRacket])
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }*/
-
   function handleUpdateWeight(id, newWeight) {
 
     const updatedWeight = {
