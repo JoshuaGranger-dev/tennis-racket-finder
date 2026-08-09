@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
 
-    fetch("http://localhost:5000/rackets")
+    fetch(`${import.meta.env.VITE_API_URL}/rackets`)
       .then((res) => res.json())
       .then((data) => {
         setRackets(data)
