@@ -8,7 +8,7 @@ function RacketList({
     setEditingRacket 
 }) {
     return (
-        <div>
+        <div className="racket-list">
             {rackets.map((racket) => (
                 <RacketCard
                 key={racket.id}

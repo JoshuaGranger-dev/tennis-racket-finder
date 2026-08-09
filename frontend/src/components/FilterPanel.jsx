@@ -20,7 +20,7 @@ function FilterPanel({
     }
 
     return (
-        <div>
+        <div className="filter-panel">
             <input type="text"
                 value={searchTerm} 
                 onChange={(e) => setSearchTerm(e.target.value)}

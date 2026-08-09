@@ -43,7 +43,7 @@ nav a:hover {
 
 /* Page Layout */
 main {
-  width: min(1200px, 92%);
+  width: min(2000px, 98%);
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -261,6 +261,258 @@ button:disabled {
   line-height: 1.45;
 }
 
+/* Racket List */
+
+.racket-page {
+  width: min(1600px, 98%);
+  margin: 0 auto;
+}
+
+/* Filter Panel*/
+
+.filter-panel {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-panel input,
+.filter-panel select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.filter-panel button {
+  white-space: nowrap;
+  padding: 0.7rem 1rem;
+}
+
+/* Browse racket grid */
+.racket-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+/* Browse racket card */
+.racket-card {
+  display: grid;
+  grid-template-columns: 175px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+
+/* Play style pill */
+.play-style-badge {
+  display: inline-block;
+  background: #eef2ff;
+  color: #1d4ed8;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* Image left, data right */
+.racket-card-body {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* Image area */
+.racket-card-image {
+  min-height: 260px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f3f4f6;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.browse-racket-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.browse-image-placeholder {
+  width: 100%;
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #1d4ed8;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+/* Right-side data */
+.racket-card-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.racket-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.racket-card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #111827;
+}
+
+/* Spec chips */
+.browse-spec-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.browse-spec-row span {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.28rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Extra details */
+.racket-details {
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.racket-details p {
+  margin: 0.35rem 0;
+}
+
+/* Edit/delete buttons */
+.racket-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.racket-actions button {
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* Guide page */
+.guide-page {
+  width: min(850px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.guide-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.guide-hero h1 {
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
+}
+
+.guide-hero p {
+  max-width: 750px;
+  margin: 0 auto;
+  color: #4b5563;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.guide-accordion {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.guide-dropdown {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.guide-dropdown summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: #111827;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.guide-dropdown p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 1rem auto 0.75rem;
+  max-width: 760px;
+  text-align: center;
+}
+
+.guide-dropdown ul {
+  max-width: 650px;
+  margin: 0.75rem auto 0;
+  padding-left: 1.25rem;
+  text-align: left;
+}
+
+.guide-dropdown li {
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.guide-dropdown[open] {
+  border-color: #bfdbfe;
+}
+
+.guide-dropdown[open] summary {
+  color: #1d4ed8;
+}
+
+.guide-dropdown:hover {
+  border-color: #bfdbfe;
+  transform: translateY(-1px);
+}
+
+.guide-dropdown {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .recommendation-card {
@@ -280,6 +532,50 @@ button:disabled {
   }
 
   .pros-cons {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-hero h1 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .racket-list {
+    grid-template-columns: 1fr;
+  }
+
+  .racket-card {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .filter-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-panel input {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 650px) {
+  .racket-card {
+    grid-template-columns: 1fr;
+  }
+
+  .racket-card-image {
+    min-height: 220px;
+  }
+
+  .browse-image-placeholder {
+    min-height: 220px;
+  }
+
+  .filter-panel {
     grid-template-columns: 1fr;
   }
 }

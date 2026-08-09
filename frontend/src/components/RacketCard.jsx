@@ -1,82 +1,68 @@
-import { useState } from "react"
 
-function RacketCard({ racket, handleDeleteRacket, editingRacket, setEditingRacket, handleUpdateWeight }) {
-
-    const [editedWeight, setEditedWeight] = useState(racket.weight)
-    const isEditing = editingRacket === racket.id 
-
-    function formatBalance(balancePoints) {
-        if (balancePoints === null || balancePoints === undefined) {
-            return "Not Listed"
-        }
-
-        if (balancePoints < 0) {
-            return `${balancePoints} Head Light`
-        }
-
-        if (balancePoints < 0) {
-            return `${balancePoints} Head Heavy`
-        }
-
-        return "0 Even Balance"
+function RacketCard({ racket, handleDeleteRacket, setEditingRacket }) {
+  function formatBalance(balancePoints) {
+    if (balancePoints === null || balancePoints === undefined) {
+      return "Not Listed"
     }
 
-    return (
-        <div>
-            <h2>
-                {racket.brand} {racket.model}
-            </h2>
+    if (balancePoints < 0) {
+      return `${balancePoints} Head Light`
+    }
 
-            <p>Head Size: {racket.headSize} sq in</p>
-            {isEditing ? (
-                <div>
-                    <input 
-                        type="number" 
-                        value={editedWeight}
-                        onChange={(e) => setEditedWeight(e.target.value)} 
-                        placeholder="New Weight"
-                    />
+    if (balancePoints > 0) {
+      return `+${balancePoints} Head Heavy`
+    }
 
-                    <button onClick={() => handleUpdateWeight(racket.id, editedWeight)}>
-                        Save
-                    </button>
+    return "0 Even Balance"
+  }
 
-                    <button onClick={() => setEditingRacket(null)}>
-                        Cancel
-                    </button>
+  return (
+    <div className="racket-card">
+      <div className="racket-card-image">
+        {racket.imageUrl ? (
+          <img
+            src={racket.imageUrl}
+            alt={`${racket.brand} ${racket.model}`}
+            className="browse-racket-image"
+          />
+        ) : (
+          <div className="browse-image-placeholder">
+            {racket.brand}
+          </div>
+        )}
+      </div>
 
-                </div>
-            ) : (
-                <p>Weight: {racket.weight} g</p>
-            )}
-            <p>String Pattern: {racket.stringPattern}</p>
-
-            <p>Swingweight: {racket.swingweight}</p>
-
-            <p>Balance: {formatBalance(racket.balancePoints)}</p>
-
-            <p>Stiffness: {racket.stiffness}</p>
-
-            <p>Beam Width: {racket.beamWidth}</p>
-
-            <p>Play Style: {racket.playStyle}</p>
-
-            <button onClick={() => handleDeleteRacket(racket.id)}>
-                Delete
-            </button>
-
-            {!isEditing && (
-                <button onClick={() => {
-                    setEditingRacket(racket.id)
-                    setEditedWeight(racket.weight)
-                }}>
-                    Edit Weight
-                </button>
-            )}
-            
-
+      <div className="racket-card-content">
+        <div className="racket-card-header">
+          <h3>{racket.brand} {racket.model}</h3>
+          <span className="play-style-badge">{racket.playStyle || "General"}</span>
         </div>
-    )
+
+        <div className="browse-spec-row">
+          <span>{racket.headSize} sq in</span>
+          <span>{racket.weight}g</span>
+          <span>{racket.swingweight} SW</span>
+          <span>{racket.stringPattern}</span>
+          <span>{formatBalance(racket.balancePoints)}</span>
+        </div>
+
+        <div className="racket-details">
+          <p>Stiffness: {racket.stiffness || "Not listed"}</p>
+          <p>Beam Width: {racket.beamWidth || "Not listed"}</p>
+        </div>
+
+        <div className="racket-actions">
+          {setEditingRacket && (
+            <button onClick={() => setEditingRacket(racket)}>Edit</button>
+          )}
+
+          {handleDeleteRacket && (
+            <button onClick={() => handleDeleteRacket(racket.id)}>Delete</button>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default RacketCard

@@ -20,7 +20,7 @@ function RacketsPage({
   setEditingRacket,
 }) {
   return (
-    <main>
+    <main className="racket-page">
       <h1>Browse Rackets</h1>
 
       <p>
