@@ -605,10 +605,6 @@ button:disabled {
     height: 160px;
   }
 
-  .racket-image {
-    max-height: 160px;
-  }
-
   .recommendation-header {
     flex-direction: column;
   }
@@ -653,6 +649,52 @@ button:disabled {
 }
 
 @media (max-width: 650px) {
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 0.75rem 0.5rem;
+  }
+
+  nav a {
+    flex: 1;
+    max-width: 130px;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.25rem;
+    white-space: nowrap;
+  }
+
+  select,
+  input {
+    color: #111827;
+    background-color: white;
+    -webkit-text-fill-color: #111827;
+    opacity: 1;
+  }
+
+  select option {
+    color: #111827;
+    background-color: white;
+  }
+
+  .recommendation-card {
+    grid-template-columns: 1fr;
+  }
+
+  .card-image {
+    min-height: 300px;
+  }
+
+  .racket-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+  }
+  
   .racket-card {
     grid-template-columns: 1fr;
   }
