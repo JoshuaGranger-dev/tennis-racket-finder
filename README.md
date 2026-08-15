@@ -6,7 +6,11 @@ The app uses a React frontend, an Express backend, and a PostgreSQL database of 
 
 ## Live Demo
 
-Coming soon.
+[View Live Site](VITE_API_URL=http://localhost:5000)
+
+## API
+
+[View Backend Racket Data](https://tennis-racket-finder.onrender.com/rackets)
 
 ## Screenshots
 
@@ -233,18 +237,23 @@ tennis-racket-finder/
 
 ## Future Improvements
 
-- Deploy the frontend and backend
-- Add a live demo link
-- Add more racket data and verify all specs
-- Add a detailed racket comparison feature
+- Add more racket data and continue verifying specs
 - Add individual racket detail pages
+- Add a racket comparison feature
+- Improve the recommendation logic with more user inputs
 - Add user profiles and saved recommendations
+- Allow users to track current and past rackets
+- Add admin-only tools for managing racket data
 - Add affiliate or “where to buy” links
-- Improve recommendation logic with more user inputs
+- Improve mobile styling and overall UI polish
 - Eventually add AI-assisted racket explanations and comparisons
 
 ## Current Status
 
-The app currently has a working React frontend, Express backend, PostgreSQL database, browseable racket list, filters, racket images, guide page, and a rule-based racket recommendation questionnaire.
+The app is currently deployed and includes a working React frontend, Express backend, PostgreSQL database, browseable racket list, filters, racket images, racket guide page, and a rule-based recommendation questionnaire.
 
-The next major step is deployment.
+Users can browse racket data, filter rackets by key specs, and receive personalized racket recommendations based on their playing style and preferences.
+
+## Next Major Step
+
+The next major step is improving the recommendation system by adding more detailed user inputs, expanding the racket database, and creating individual racket detail pages so users can better compare recommended rackets.
