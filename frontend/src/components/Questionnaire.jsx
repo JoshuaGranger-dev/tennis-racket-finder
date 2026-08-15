@@ -42,7 +42,7 @@ function Questionnaire() {
     setRecommendations([])
 
     try {
-      const response = await fetch("http://localhost:5000/recommendations", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/recommendations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
