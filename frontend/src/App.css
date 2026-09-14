@@ -648,7 +648,7 @@ button:disabled {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
   nav {
     width: 100%;
     display: flex;
