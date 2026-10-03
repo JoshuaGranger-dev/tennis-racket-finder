@@ -3,6 +3,16 @@ const pool = require("../db")
 
 const router = express.Router()
 
+function requireRacketWrites(req, res, next) {
+  if (process.env.ALLOW_RACKET_WRITES !== "true") {
+    return res.status(403).json({
+      error: "Racket changes are disabled"
+    });
+  }
+
+  next();
+}
+
 function formatRacket(row) {
   return {
     id: row.id,
@@ -85,7 +95,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-router.post("/", async (req, res) => {
+router.post("/", requireRacketWrites, async (req, res) => {
   try {
     const {
       brand,
@@ -150,7 +160,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireRacketWrites, async (req, res) => {
   try {
     const racketId = Number(req.params.id)
 
@@ -170,7 +180,7 @@ router.delete("/:id", async (req, res) => {
   }
 })
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", requireRacketWrites, async (req, res) => {
   try {
     const racketId = Number(req.params.id)
     const updates = req.body
